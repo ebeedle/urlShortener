@@ -1,0 +1,31 @@
+
+/*html {
+	color: purple;
+}*/
+
+.container {
+	font-size: 30px;
+	text-align: center;
+	margin: 0 auto;
+	width: 45%;
+	padding-top: 40px;
+}
+
+#text {
+	width: 70%;
+	height: 25px;
+}
+
+.header {
+	background: #FF6347;
+	height: 100px;
+	font-size: 50px;
+	text-align: center;
+	color: white;
+	line-height: 100px;
+}
+
+/*.footer {
+	height: 100px;
+	background: orange;
+}*/
