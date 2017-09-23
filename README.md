@@ -3,6 +3,8 @@ will shorten Urls
 
 Directions:
 
-1) run 'mongod' in terminal
-2) run 'redis-server' in terminal
-3) run 'npm start' in terminal
+1) make sure you have mongoDB, npm, nad redis installed
+
+2) run 'mongod'
+3) run 'redis-server'
+4) run 'npm start'
