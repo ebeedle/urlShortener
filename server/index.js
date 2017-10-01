@@ -1,14 +1,12 @@
 const express = require('express');
 const path = require('path');
 let app = express();
-// let selectAll = require('../db/db.js').selectAll;
-// let Link = require('../db/db.js').Link;
 var bodyParser = require('body-parser');
-// var generateSlug = require('../models/models.js')
 var models = require('./models');
 
 var redis = require('redis');
-var client = redis.createClient(); //creates a new client
+var client = redis.createClient();
+var utils = require('./lib/hashUtils.js')
 
 client.on('connect', function() {
     console.log('connected');
@@ -31,7 +29,6 @@ function cache(req, res, next) {
         if (destination != null) {
             console.log(`utilizing redis slug : ${slug} destination : ${destination}`);
             res.redirect(destination)
-            // respondes.send(respond(org, data));
         } else {
             req.noRedis = true;
             next();
@@ -43,10 +40,58 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '../client/home/index.html'));
 })
 
+app.get('/portal', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/portal.html'));
+})
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/login.html'));
+})
+
+app.post('/login', (req, res) => {
+  var inputtedPassword = req.body.password;
+  var email = req.body.email;
+  models.users.get({email : email})
+    .then(user => {
+      if (!user.length) {
+        res.redirect('/signup')
+      } else {  
+        var usersPassword = user[0].password;
+        var usersSalt = user[0].salt;
+        var correctPassword = utils.compareHash(inputtedPassword, usersPassword, usersSalt);
+        if (correctPassword) {
+          return res.redirect('/portal');
+        } else {
+          return res.redirect('/login')
+        }
+      }
+    })
+    .catch(err => {
+      console.log('error :', err);
+      res.redirect('/login')
+    })
+})
+
+app.get('/signup', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/signup.html'))
+})
+
+app.post('/signup', (req, res) => {
+  var email = req.body.email;
+  var password = req.body.password;
+  var hashAndSalt = utils.createHashandSalt(password);
+  var hash = hashAndSalt.hash;
+  var salt = hashAndSalt.salt;
+
+  models.users.create({email: email, password: hash, salt: salt})
+    .then(() => res.redirect('/login'))
+    .catch(err => {
+      console.log('error :', err)
+      res.redirect('/signup')
+    })
+})
+
 app.get('/styles.css', (req, res) => {
-	// app.set('etag', false)
-	//check if etag same as previous, if so, send file,
-	//if not, don't send file. 
 	res.sendFile(path.join(__dirname, '../client/styles.css'));
 })
 
@@ -99,7 +144,8 @@ app.get('/:slug', cache, (req, res) => {
     })
 })
 
+module.exports = app;
 
-app.listen(3000, () => {
-	console.log('Listening on port 3000');
-})
+// app.listen(3000, () => {
+// 	console.log('Listening on port 3000');
+// })

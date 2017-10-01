@@ -62,24 +62,3 @@ class Model {
 }
 
 module.exports = Model
-
-// var n = new module.exports('users');
-
-// n.update({email: 'gsldkfj'}, {email: 'updatedemail'})
-// .then(data => console.log(data)) 
-
-// var m = new Model('users');
-
-// m.update({id: 2}, {password: 'hello'})
-// .then(x => console.log(x));
-// var courses = new Model('courses');
-// var users = new Model('users');
-
-// users.deleteAll()
-// .then(x => {
-// 	console.log('x :', x[0])
-// })
-// .catch(err => {
-// 	console.log(err);
-// })
-
