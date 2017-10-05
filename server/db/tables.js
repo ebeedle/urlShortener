@@ -19,6 +19,16 @@ var createTables = db => {
 		);`
   )
   })
+  .then(() => {
+  	return db.queryAsync(`create table if not exists sessions (
+  	  id int not null auto_increment primary key,
+  	  hash VARCHAR(100),
+  	  salt VARCHAR(100),
+  	  user_id INT,
+  	  timestamp TIMESTAMP
+  	  );`
+    )
+  })
 }
 
 module.exports = createTables;

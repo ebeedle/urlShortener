@@ -55,5 +55,8 @@ describe('', function() {
     });
   })
 
+	 //make a http request. Pass it through cookie parser
+	 //have cookie parser attatch a cookies object to request
+
 	 
 })
