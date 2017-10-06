@@ -18,12 +18,12 @@ $(document).ready(() => {
  	 var longLink = {longLink: longLink};
 	 $.ajax({
 	      type: 'POST',
-	      url: `http://${url2}/createHash`,
+	      url: `https://${url2}/createHash`,
 	      data: longLink
 	    })
 	    .done((user) => {
 	    	console.log('urser ', user);
-	    	var url = `http://${url2}/${user}`
+	    	var url = `https://${url2}/${user}`
 	    	console.log('typeof', typeof user);
 	    	$('#slugs').append(`<div> Your shortened URL is <span style="color: blue; text-decoration: underline; cursor: pointer" onClick="getUrl('${url}')"> ${url} </span> </div>`)
 	    });
