@@ -23,7 +23,7 @@ $(document).ready(() => {
 	    })
 	    .done((user) => {
 	    	console.log('urser ', user);
-	    	var url = `https://${url2}/${user}`
+	    	var url = `http://${url2}/${user}`
 	    	console.log('typeof', typeof user);
 	    	$('#slugs').append(`<div> Your shortened URL is <span style="color: blue; text-decoration: underline; cursor: pointer" onClick="getUrl('${url}')"> ${url} </span> </div>`)
 	    });
