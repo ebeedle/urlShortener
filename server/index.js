@@ -4,13 +4,13 @@ let app = express();
 var bodyParser = require('body-parser');
 var models = require('./models');
 
-var redis = require('redis');
-var client = redis.createClient();
+// var redis = require('redis');
+// var client = redis.createClient();
 var utils = require('./lib/hashUtils.js')
 
-client.on('connect', function() {
-    console.log('connected');
-});
+// client.on('connect', function() {
+//     console.log('connected');
+// });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -22,18 +22,18 @@ app.use(function (req, res, next) {
 });
 
 function cache(req, res, next) {  
-     var slug = req.params.slug;
-     client.get(slug, function (err, destination) {
-        if (err) throw err;
+    //  var slug = req.params.slug;
+    //  client.get(slug, function (err, destination) {
+    //     if (err) throw err;
 
-        if (destination != null) {
-            console.log(`utilizing redis slug : ${slug} destination : ${destination}`);
-            res.redirect(destination)
-        } else {
-            req.noRedis = true;
+    //     if (destination != null) {
+    //         console.log(`utilizing redis slug : ${slug} destination : ${destination}`);
+    //         res.redirect(destination)
+    //     } else {
+    //         req.noRedis = true;
             next();
-        }
-    });
+    //     }
+    // });
 }
 
 app.get('/', (req, res) => {
@@ -131,9 +131,9 @@ app.get('/:slug', cache, (req, res) => {
     .then(link => {
       if (link.length) {
         var destination = link[0].destination;
-         if (req.noRedis) {
-          client.setex(slug, 30, destination);  
-        }
+        //  if (req.noRedis) {
+        //   client.setex(slug, 30, destination);  
+        // }
         res.redirect(destination)
       } else {
         throw slug;
