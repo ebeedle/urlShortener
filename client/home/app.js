@@ -1,7 +1,7 @@
 var ob = 'hi';
 var port = 5000 || 3000;
 var url1 = `localhost:${port}`;
-var url2 = `urlshortener4.herokuapp.com/`;
+var url2 = `urlshortener4.herokuapp.com`;
 console.log('port :', port);
 
 var getUrl = function(url) {
