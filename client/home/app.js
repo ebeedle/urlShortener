@@ -25,7 +25,7 @@ $(document).ready(() => {
 	    	console.log('urser ', user);
 	    	var url = `http://${url2}/${user}`
 	    	console.log('typeof', typeof user);
-	    	$('#slugs').append(`<div> Your shortened URL is <span style="color: blue; text-decoration: underline; cursor: pointer" onClick="getUrl('${url}')"> http://localhost:3000/${user} </span> </div>`)
+	    	$('#slugs').append(`<div> Your shortened URL is <span style="color: blue; text-decoration: underline; cursor: pointer" onClick="getUrl('${url}')"> ${url} </span> </div>`)
 	    });
   e.preventDefault(e);
  })
