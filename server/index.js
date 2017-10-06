@@ -100,6 +100,7 @@ app.get('/app.js', (req, res) => {
 })
 
 app.post('/createHash', (req, res) => {
+  console.log('gneerating....')
   var destination = req.body.longLink;
   
   var generateAndCheck = (callback) => {
@@ -116,6 +117,7 @@ app.post('/createHash', (req, res) => {
   }
 
   generateAndCheck(slug => {
+    console.log('slug :', slug);
     models.links.create({destination: destination, slug: slug})
       .then(() => res.send(slug))
       .catch(err => console.log(err))

@@ -1,4 +1,9 @@
 var ob = 'hi';
+var port = 5000 || 3000;
+var url1 = `localhost:${port}`;
+var url2 = `urlshortener4.herokuapp.com/`;
+console.log('port :', port);
+
 var getUrl = function(url) {
   window.location.href = url;
 }
@@ -13,7 +18,7 @@ $(document).ready(() => {
  	 var longLink = {longLink: longLink};
 	 $.ajax({
 	      type: 'POST',
-	      url: 'http://localhost:3000/createHash',
+	      url: `http://${url2}/createHash`,
 	      data: longLink
 	    })
 	    .done((user) => {
