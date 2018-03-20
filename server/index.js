@@ -42,6 +42,7 @@ function cache(req, res, next) {
 }
 
 app.get('/', (req, res) => {
+  console.log('home page loading')
 	res.sendFile(path.join(__dirname, '../client/home/index.html'));
 })
 
