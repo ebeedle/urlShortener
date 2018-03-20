@@ -1,6 +1,6 @@
 var app = require('./index.js');
 var port = process.env.PORT || 3000;
-
+console.log('working');
 app.listen(port, () => {
 	console.log(`Listening on port ${port}`);
 })
