@@ -1,5 +1,4 @@
 let dotenv;
-console.log('process :', process.env.NODE_ENV);
 if (process.env.NODE_ENV !== 'production') {
   let result = require('dotenv');
   result.config();
