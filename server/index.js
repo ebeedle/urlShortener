@@ -1,8 +1,13 @@
-const dotenv = require('dotenv')
-const result = dotenv.config()
-if (result.error) {
-  throw result.error
-}
+let dotenv;
+console.log('process :', process.env.NODE_ENV);
+if (process.env.NODE_ENV !== 'production') {
+  let result = require('dotenv');
+  result.config();
+  if (result.error) {
+    throw result.error
+  }
+} 
+  
 const express = require('express');
 const path = require('path');
 let app = express();
