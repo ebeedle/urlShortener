@@ -1,8 +1,8 @@
-// const dotenv = require('dotenv')
-// const result = dotenv.config()
-// if (result.error) {
-//   throw result.error
-// }
+const dotenv = require('dotenv')
+const result = dotenv.config()
+if (result.error) {
+  throw result.error
+}
 const express = require('express');
 const path = require('path');
 let app = express();

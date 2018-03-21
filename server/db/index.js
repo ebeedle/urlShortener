@@ -8,6 +8,8 @@ let pool = mysql.createPool({
   database: process.env.DB
 })
 
+console.log('host :', process.env.DB_HOST)
+
 module.exports = {
     query: function(){
         var sql_args = [];
