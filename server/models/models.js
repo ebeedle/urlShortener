@@ -1,5 +1,10 @@
 var db = require('../db/index.js')
 
+const Promise = require('bluebird');
+if (!db.queryAsync) {
+    db = Promise.promisifyAll(db);
+}
+
 var reduceOb = (options, cb, start) => {
 	var keys = Object.keys(options);
 	for (var i = 0; i < keys.length; i++) {

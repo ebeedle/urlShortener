@@ -1,8 +1,17 @@
+const dotenv = require('dotenv')
+const result = dotenv.config()
+if (result.error) {
+  throw result.error
+}
 const express = require('express');
 const path = require('path');
 let app = express();
 var bodyParser = require('body-parser');
 var models = require('./models');
+ 
+ 
+// console.log('parsed :', result.parsed)
+// console.log('processs env 2 :', process.env.DB)
 
 // var redis = require('redis');
 // var client = redis.createClient();

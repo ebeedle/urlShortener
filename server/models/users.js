@@ -16,9 +16,9 @@ class Users extends Model {
 	}
 }
 
-module.exports = new Users();
+// module.exports = new Users();
 
 
-var x = module.exports.createHashandSalt('bob')
+// var x = module.exports.createHashandSalt('bob')
 
-console.log('x :', x);
+// console.log('x :', x);
